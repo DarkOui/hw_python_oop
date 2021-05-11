@@ -55,7 +55,7 @@ class CashCalculator(Calculator):
                       'rub': ('руб', CashCalculator.RUB_RATE)}
         cash_remained = self.limit - self.get_today_stats()
         currency_name, currency_rate = currencies[currency]
-        money = abs(round(cash_remained / currency_rate))
+        money = abs(round(cash_remained / currency_rate, 2))
         if cash_remained == 0:
             return('Денег нет, держись')
         if cash_remained > 0:
