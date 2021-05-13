@@ -5,7 +5,7 @@ class Record:
     """Преобразование данных в списке Calculator.records"""
 
     def __init__(self, amount, comment, date=None):
-        self.amount = float(amount)
+        self.amount = amount
         self.comment = comment
         if date is None:
             self.date = dt.date.today()
@@ -86,6 +86,7 @@ class CaloriesCalculator(Calculator):
             return (f'Сегодня можно съесть что-нибудь ещё, но с '
                     f'общей калорийностью не более {calories_remained} кКал')
         return 'Хватит есть!'
+
 
 # Проверки
 # cash_calculator = CashCalculator(1000)
