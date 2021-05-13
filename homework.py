@@ -92,7 +92,7 @@ class CaloriesCalculator(Calculator):
 # cash_calculator.add_record(Record(amount=145, comment='кофе'))
 # cash_calculator.add_record(Record(amount=300, comment='Серёге за обед'))
 # cash_calculator.add_record(Record(amount=3000,
-#                                   comment='бар в Танин др', date='09.05.2021'))
+#                                comment='бар в Танин др', date='09.05.2021'))
 # print(cash_calculator.get_today_cash_remained('rub'))
 # На сегодня осталось 555 руб
 # calcM = CashCalculator(10000)
