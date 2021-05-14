@@ -4,7 +4,7 @@ import datetime as dt
 class Record:
     """Преобразование данных в списке Calculator.records."""
 
-    def __init__(self, amount, comment, date=None):
+    def __init__(self, amount: float, comment: str, date: str = None) -> None:
         self.amount = amount
         self.comment = comment
         if date is None:
@@ -16,10 +16,10 @@ class Record:
 class Calculator:
     """Создаем класс калькулятор."""
 
-    def __init__(self, limit):
+    def __init__(self, limit: float):
         """Инициализация общего класса калькулятора."""
         self.limit = limit
-        self.records = []
+        self.records: list = []
 
     def add_record(self, record):
         """Метод сохранения записей."""
@@ -47,9 +47,9 @@ class Calculator:
 
 class CashCalculator(Calculator):
     """Создаем подкласс - калькулятор денег."""
-    USD_RATE = 75.0
-    EURO_RATE = 90.0
-    RUB_RATE = 1.0
+    USD_RATE: float = 75.0
+    EURO_RATE: float = 90.0
+    RUB_RATE: float = 1.0
 
     def get_today_cash_remained(self, currency='rub'):
         """Метод расчета, сколько денег еще можно потратить."""
@@ -79,3 +79,25 @@ class CaloriesCalculator(Calculator):
             return ('Сегодня можно съесть что-нибудь ещё, но с '
                     f'общей калорийностью не более {calories_remained} кКал')
         return 'Хватит есть!'
+
+
+# Проверки
+cash_calculator = CashCalculator(1000)
+cash_calculator.add_record(Record(amount=145, comment='кофе'))
+cash_calculator.add_record(Record(amount=300, comment='Серёге за обед'))
+cash_calculator.add_record(Record(amount=3000,
+                                  comment='бар в Танин др', date='09.05.2021'))
+print(cash_calculator.get_today_cash_remained('rub'))
+# На сегодня осталось 555 руб
+calcM = CashCalculator(10000)
+calcC = CaloriesCalculator(1000)
+calcM.add_record(Record(amount=145.6, comment='Безудержный шопинг'))
+calcM.add_record(Record(amount=1568.9,
+                        comment='Наполнение потребительской корзины'))
+calcM.add_record(Record(amount=691.4, comment='Катание на такси'))
+calcC.add_record(Record(amount=1186, comment='Кусок тортика. И ещё один.'))
+calcC.add_record(Record(amount=84, comment='Йогурт.'))
+calcC.add_record(Record(amount=1140.1, comment='Баночка чипсов.'))
+print(calcM.get_today_cash_remained('evr'))
+print(calcM.get_week_stats())
+print(calcC.get_calories_remained())
